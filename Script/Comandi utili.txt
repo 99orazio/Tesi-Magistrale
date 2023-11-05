@@ -1,0 +1,38 @@
+comandi codice: 
+redis-cli
+sudo sh install.sh # avvia celery ed il file app.py in modo che sia possibile chiamare le funzioni da web.
+uccidere celery: sudo celery multi stop workername --pidfile=celery.pid
+----testare da console-----
+from tasks import *
+out = run_scans.delay()
+eseguire la scansione sulla rete
+out.status  # deve essere "SUCCESS"
+----testare da postman----
+inserire nel body: {"ip_address" : "192.168.1.0/24"}
+----------------------------------------------------------------------------
+comando server iperf:
+wireguard server: iperf3 -s -p 2020
+---------------------------------------------------------------------------------
+comandi docker: 
+- cd /opt/wireguard-server
+- scrivere file docker-compose.yaml
+- sudo docker-compose up -d  # crea l'img docker
+- docker-compose ps # vedo il processo attivo di wireguard
+- systemctl start docker
+- sudo docker exec -it wireguard wg
+- sudo docker stop wireguard
+- sudo docker rm wireguard
+- sudo docker exec -it wireguard bash
+
+sudo docker exec -it turtlevpn_worker_1 sh
+sudo docker ps
+sudo docker logs "id-container"
+sudo docker stop "id-container"
+--------------------------------------------------------------------------------------
+per visualizzare il display sullo schermo fisso normalmente si deve eliminare il server che simula il monitor connesso.
+sudo apt-get remove --auto-remove xserver-xorg-video-dummy
+----------------------------------------------------------------------------------------------
+comandi openVPN:
+- script presente sulla scrivania, eseguire con sudo ./
+- sudo service openvpn start
+-----------------------------

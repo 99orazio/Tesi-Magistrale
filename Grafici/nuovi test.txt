@@ -1,0 +1,41 @@
+								INFO SUI FLAG
+-M è per settare MSS per pacchetto TCP
+-l 1024B è per settare la grandezza del singolo pacchetto UDP, in base alla grandezza cambia anche la bandwidth
+-n 1024M invio un flusso di 1 gb
+-b /100 è il numero di datagrammi per ogni intervallo
+-b 10M è la banda massima assegnata per il trasferimento dei pacchetti, si usa SEMPRE CON UDP ALTRIMENTI LA BANDA è SOLO DI 1 MBPS. (SE TROPPO ALTO ALLORA SI DISCONNETTE LA RETE)
+-F test.bin invia il file test.bin
+-t 1 esegue un solo intervallo di invio
+ --get-server-output ottendo altre info come il bitrate
+-b 0 banda massima illimitata
+-w 10k indica che la finestra di invio è 10k cioè che 10k non necessitano del controllo di correttezza di invio.
+-P 10 indica 10 connessioni parallele TCP
+--------------------------------------------------------------------------------------------------------------------------------------
+							  TEST DA ESEGUIRE
+
+test 1: .\iperf3 -c 10.66.66.1 -p 2020 -u -b 0 -n 512M --get-server-output (throughput massimo UDP)
+utile per rappresentare i pacchetti persi. asse x tempo, asse y pacchetti persi per ogni eseguzione del test. oppure bitrate effettivo oppure trasferimento. 
+
+test 2: .\iperf3 -c 10.66.66.1 -p 2020 -P 10 -b 0 -w 100k --get-server-output (throughput massimo TCP)
+utile per rappresentare il bitrate raggiunto o per rappresentare la quantità di dati scambiati in un intervallo di 10 secondi. fare un grafico a linea, sulle x metto il tempo di esecuzione del test e sulle y il bitrate medio di ognuno delle 10 esecuzioni eseguite. i parametri da utilizzare sono questi ma si può provare a cambiare il numero di connessioni parallele o la finestra e così trovare il miglior compromesso. volendo posso inserire anche il parametro -n ma così limito il trasferimento ad una certa quantità che fisso io e non ha più senso fare il grafico sulla quantità di dati trasferiti.
+
+test 3: .\iperf3 -c 10.66.66.1 -u -p 2020 -S 0x28 -l 78 -b 100K --get-server-output (flusso UDP voip)
+grafico sul bitrate o sui pacchetti persi, come test 1. il parametro -S mi serve per inserire nell'header dei pacchetti che il flusso appartiene al tipo "voip" e quindi va ad assegnare una certa priorità ai pacchetti in base al valore dato ad -S. la banda massima è fissata a 100k dato che è la banda che un flusso voip può utilizzare, oltre non è utile. -l 78 è la grandezza del singolo pacchetto UDP
+
+test 4: .\iperf3 -c 10.66.66.1 -p 2020 -S 32 -M 1460B --get-server-output (flusso TCP come netflix, amazon prime).
+è possibile settare le connessioni parallele ed impostare un limite di banda a 7.5M (flusso hd). -S 32 indica che i pacchetti appartengono ad un flusso video e quindi assumono una certa priorità nel trasferimento. -M 1460 è la grandezza del singolo pacchetto ed è settato a quel valore per evitare frammentazione.
+
+test 5: .\iperf3 -c 10.66.66.1 -p 2020 -S 10 -M 1460B -b 0 --get-server-output (trasferimento massivo TCP)
+-b 0 è il parametro per impostare il massimo della banda possibile. 
+----------------------------------------------------------------------------------------------------------------------------------------
+							     POSSIBILI GRAFICI
+
+test 1: grafico linea, x= tempo del test cioè 10 secondi , y= bitrate raggiunto. 
+test 2: grafico linea, x= tempo del test cioè 10 secondi , y= bitrate raggiunto.
+test 3: grafico linea, x= tempo del test cioè 10 secondi , y= bitrate raggiunto.
+test 4: grafico linea, x= tempo del test cioè 10 secondi , y= dati trasferiti.
+test 5: grafico linea, x= tempo del test cioè 10 secondi , y= dati trasferiti.
+
+
+
+

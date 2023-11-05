@@ -1,0 +1,2 @@
+la cartella wireguard-server (in opt) viene creata dall'utente, poi esegue  il file docker-compose che andrà a generare la cartella config.
+il file docker-compose fa riferimento all'img di wireguard che stava sulla Scrivania della scatoletta. ho usato il tag "local_image"

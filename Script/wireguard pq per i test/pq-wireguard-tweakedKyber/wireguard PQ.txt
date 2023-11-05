@@ -1,0 +1,9 @@
+da vm:
+sudo ./wireguard -f -c peerA.cong wg1
+sudo ip addr add 9.0.0.1/24 dev wg1
+sudo ip link set wg1 up
+
+da scatoletta:
+sudo ./wireguard -f -c peerB.cong wg1
+sudo ip addr add 9.0.0.2/24 dev wg1
+sudo ip link set wg1 up
