@@ -1,0 +1,3 @@
+import modulo
+#  FILE DI TESTING PER LA FUNZIONE DI SCANSIONE PERIODICA
+modulo.stop()
