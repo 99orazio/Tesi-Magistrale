@@ -1,0 +1,40 @@
+\chapter{Conclusioni e sviluppi Futuri} %\label{1cap:spinta_laterale}
+% [titolo ridotto se non ci dovesse stare] {titolo completo}
+%
+
+
+\begin{citazione}
+In questa sezione, saranno riassunti i risultati ottenuti dal sistema realizzato, ed inoltre, saranno discussi i potenziali sviluppi che potrebbero essere intrapresi in futuro.
+\end{citazione}
+\newpage
+
+\section{Risultati ottenuti}
+Una volta che il sistema è stato implementato correttamente, tutti i test sono stati portati avanti come spiegato nel capitolo precedente in modo da poter stabilire con sicurezza il \emph{comportamento} di ognuno dei protocolli VPN impiegati affinché sia chiaro quale sia quello più adatto da utilizzare in relazione anche al grado di \emph{sicurezza} che si vuole ottenere. Come si è potuto osservare dai risultati prodotti dalle esecuzioni degli esperimenti, ognuno di essi ha dato un output diverso condizionato principalmente dal fatto che alla base di ogni tentativo eseguito è presente un flusso di dati differente per ognuno di essi.
+
+\subsection{Valutazione dei risultati}
+Osservando i grafici e quindi gli output relativi alle esecuzioni degli esperimenti, si può facilmente notare che per ognuno di essi il risultato è distinto, in particolare:
+\begin{itemize}
+    \item \emph{Esperimento 1}: WireGuard standard è il protocollo VPN a comportarsi meglio;
+    \item \emph{Esperimento 2}: WireGuard standard è il protocollo VPN a comportarsi meglio;
+    \item \emph{Esperimento 3}: WireGuard PQ è il protocollo VPN a comportarsi meglio;
+    \item \emph{Esperimento 4}: WireGuard standard è il protocollo VPN a comportarsi meglio;
+    \item \emph{Esperimento 5}: Wireguard standard è il protocollo VPN a comportarsi meglio.
+\end{itemize}
+
+Dall'elenco superiore si intuisce che in linea di massima il protocollo \emph{WireGuard} si comporta meglio del protocollo \emph{OpenVPN} con questi precisi esperimenti eseguiti; in particolare la versione \emph{standard} risulta offrire le migliori prestazioni mentre la versione \emph{PQ} ha restituito in output dei risultati che sono perfettamente paragonabili a quelli ottenuti utilizzando OpenVPN, il quale conferma che nonostante l'\emph{overhead} aggiunto a causa degli algoritmi \emph{Post Quantum} impiegati da WireGuard PQ esso risulta comunque prestazionalmente paragonabile ad un protocollo VPN che impiega algoritmi convenzionali. 
+
+\section{Contributi della ricerca}
+Arrivati a questo punto del percorso affrontato, è importante notare qual'è il \emph{contributo} effettivo che il presente progetto può offrire alla ricerca ed allo sviluppo di soluzioni post quantum inerenti al trasferimento di flussi di dati aventi determinate esigenze in termini di rete. Il lavoro portato avanti ha consentito di realizzare uno strumento che al giorno d'oggi può essere di grande aiuto soprattutto per quei settori della ricerca che sono strettamente correlati allo sviluppo di nuovi algoritmi post quantum ed al trasferimento sicuro di dati. La testbed realizzata offre la possibilità di poter eseguire numerosi test e di poter integrare anche altri algoritmi in modo da poter effettuare una comparazione dei protocolli VPN ancora più ampia ed esaustiva. Inerentemente ai flussi di dati trasferiti, il tool \emph{Iperf} ha consentito di poter simulare in modo preciso e rapido l'insieme di flussi impiegati durante gli esperimenti, ma offre la possibilità di poterne simulare tanti altri così da approfondire le performance e/o testare altri parametri di rete come il \emph{packet loss}.
+\section{Sviluppi futuri}
+Analizziamo ora alcune delle possibili strade che potrebbero essere intraprese al fine di apportare delle migliorie al lavoro svolto, sia per quanto riguarda le funzionalità realizzate che lo studio portato avanti.
+
+\subsection{Ulteriori esperimenti}
+Come accennato nel paragrafo precedente, in futuro potrebbe essere sicuramente utile progettare ed eseguire diversi altri esperimenti i quali fanno riferimento a differenti flussi di dati aventi requisiti diversi da quelli previsti in questo lavoro. Questo tipo di sviluppo potrebbe fare ulteriore chiarezza sui protocolli VPN in modo da stabilire con certezza quali di essi sono più adatti a determinati scopi.
+
+\subsection{Infrastruttura di rete}
+In relazione alle performance ottenute dai protocolli VPN testati tramite gli esperimenti eseguiti, potrebbe essere interessante ripetere questi ultimi fornendo alla testbed delle \emph{connessioni di rete} diverse da quella impiegata in questo lavoro così da poter analizzare i risultati anche in relazione al tipo di connessione che si sta utilizzando per connettere la testbed in rete.
+
+\subsection{Realizzazione interfaccia web}
+Le funzionalità proposte agli utenti che intendono farne uso, in particolare il modulo inerente all'esecuzione delle scansioni di rete tramite l'uso della libreria \emph{Nmap}, sono state pensate per essere sfruttate tramite delle \emph{richieste HTTP} eseguite dagli host presenti in rete LAN; a tale proposito sarebbe efficace sviluppare una \emph{GUI} il quale semplificherebbe di gran lunga l'esecuzione delle richieste, soprattutto ad un pubblico che non ha molta dimestichezza con la generazione delle richieste manualmente o banalmente per avvantaggiare la fruizione delle funzionalità stesse.
+
+
